@@ -1,19 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import * as ROUTES from './routes';
+import store from './app/store';
 import './styles/tailwind.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<ROUTES.SpeciesPage />} />
-        <Route path="species" element={<ROUTES.SpeciesPage />} />
-        <Route path="species/:id" element={<ROUTES.SpeciesProfilePage />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<ROUTES.SpeciesPage />} />
+          <Route path="species" element={<ROUTES.SpeciesPage />} />
+          <Route path="species/:id" element={<ROUTES.SpeciesProfilePage />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
 );
 
