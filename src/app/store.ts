@@ -1,12 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { speciesApi } from '../features/speciesList/api';
+import { speciesListApi } from '../features/speciesList/api';
+import { speciesProfileApi } from '../features/speciesProfile/api';
 
 const store = configureStore({
   reducer: {
-    [speciesApi.reducerPath]: speciesApi.reducer,
+    [speciesListApi.reducerPath]: speciesListApi.reducer,
+    [speciesProfileApi.reducerPath]: speciesProfileApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(speciesApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
+    speciesListApi.middleware,
+    speciesProfileApi.middleware,
+  ),
 });
 
 setupListeners(store.dispatch);
