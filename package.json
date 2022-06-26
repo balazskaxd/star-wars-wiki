@@ -12,6 +12,7 @@
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "autoprefixer": "^10.4.7",
+    "history": "^5.3.0",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
     "postcss-preset-env": "^7.7.2",
@@ -26,9 +27,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "lint": "npx eslint src --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "npx eslint src --ext .js,.jsx,.ts,.tsx --fix"
+    "lint:fix": "npx eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "test": "react-scripts test --detectOpenHandles",
+    "test:a": "react-scripts test --detectOpenHandles --watchAll=false",
+    "test:c": "react-scripts test --coverage --detectOpenHandles --watchAll=false"
   },
   "eslintConfig": {
     "extends": "react-app"

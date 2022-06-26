@@ -1,11 +1,15 @@
-import SpeciesProfile from 'features/speciesProfile';
+import Header from 'components/Header/Header';
+import SpeciesProfile from 'features/speciesProfile/SpeciesProfile';
 
 function SpeciesProfilePage() {
   return (
-    <div>
-      <h1>Species Profile Page</h1>
+    <>
+      {/* Page header */}
+      <Header title="Species Profile Page" withBackButton />
+
+      {/* Page content with profile of selected spieces */}
       <SpeciesProfile />
-    </div>
+    </>
   );
 }
 
