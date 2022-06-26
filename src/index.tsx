@@ -1,12 +1,19 @@
-import ReactDOM from 'react-dom/client';
-import './styles/tailwind.css';
 import React from 'react';
-import App from './App';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import * as ROUTES from './routes';
+import './styles/tailwind.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ROUTES.SpeciesPage />} />
+        <Route path="species" element={<ROUTES.SpeciesPage />} />
+        <Route path="species/:id" element={<ROUTES.SpeciesProfilePage />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
 );
 
