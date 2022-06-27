@@ -1,4 +1,5 @@
 import { PeopleDTO } from 'app/types';
+import { populateIds } from 'app/utils';
 import { useState, useEffect } from 'react';
 import { useGetSpeciesQuery } from './api';
 
@@ -8,11 +9,10 @@ export const useSpeciesProfile = (id: string) => {
   const { data: speciesProfile, isLoading, isFetching } = useGetSpeciesQuery(id);
 
   const fetchPeople = async () => {
-    Promise
-      .all(speciesProfile!.people.map((people) => fetch(people).then((data) => (data.json()))))
-      .then((reposnes) => {
-        setPeopleList(reposnes);
-      });
+    if (speciesProfile?.people) {
+      const populatedPeople = await populateIds(speciesProfile.people);
+      setPeopleList(populatedPeople);
+    }
   };
 
   useEffect(() => {

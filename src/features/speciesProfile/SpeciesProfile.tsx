@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom';
 import { CardListItem, ProfileUrlParams } from 'app/types';
 import { getItemId } from 'app/utils';
 import CardList from 'components/CradList/CardList';
+import Spinner from 'components/Spinner/Spinner';
 import { useSpeciesProfile } from './useSpeciesProfile';
 
 function SpeciesProfile() {
   const { id } = useParams<ProfileUrlParams>();
 
   const {
+    isFetching,
     speciesProfile,
     peopleList,
   } = useSpeciesProfile(id!);
@@ -21,11 +23,14 @@ function SpeciesProfile() {
   ), [peopleList]);
 
   return (
-    <div>
+    <div className="max-w-4xl mx-auto p-10">
+      {
+        isFetching && <Spinner />
+      }
       {
         speciesProfile
         && (
-          <div className="max-w-4xl mx-auto pt-10">
+          <>
             <h2 className="font-medium text-3xl font-['Poppins'] border-b border-gray-500 py-3 pl-6 mb-6">
               {`${speciesProfile.name} characters`}
             </h2>
@@ -35,7 +40,7 @@ function SpeciesProfile() {
                 <CardList items={transformedPeopleList} path="/characters" />
               )
             }
-          </div>
+          </>
         )
       }
     </div>

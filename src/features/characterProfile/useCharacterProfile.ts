@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FilmDTO, SpeciesDTO } from 'app/types';
+import { populateIds } from 'app/utils';
 import { useGetCharacterQuery } from './api';
 
 export const useCharacterProfile = (id: string) => {
@@ -9,23 +10,20 @@ export const useCharacterProfile = (id: string) => {
   const { data: characterProfile, isLoading, isFetching } = useGetCharacterQuery(id);
 
   const fetchFilms = async () => {
-    Promise
-      .all(characterProfile!.films.map((film) => fetch(film).then((data) => (data.json()))))
-      .then((reposnes) => {
-        setFilmList(reposnes);
-      });
+    if (characterProfile?.films) {
+      const populatedFilms = await populateIds(characterProfile.films);
+      setFilmList(populatedFilms);
+    }
   };
 
   const fetchSpecies = async () => {
-    Promise
-      .all(characterProfile!.species.map((item) => fetch(item).then((data) => (data.json()))))
-      .then((reposnes) => {
-        setSpeciesList(reposnes);
-      });
+    if (characterProfile?.species) {
+      const populatedSpecies = await populateIds(characterProfile.species);
+      setSpeciesList(populatedSpecies);
+    }
   };
 
   useEffect(() => {
-    console.log(characterProfile);
     if (characterProfile) {
       fetchFilms();
       fetchSpecies();

@@ -1,5 +1,6 @@
 import { PeopleDTO, ProfileUrlParams } from 'app/types';
 import ListBlock from 'components/ListBlock/ListBlock';
+import Spinner from 'components/Spinner/Spinner';
 import { useParams } from 'react-router-dom';
 import { useCharacterProfile } from './useCharacterProfile';
 
@@ -23,17 +24,21 @@ function CharacterProfile() {
   const { id } = useParams<ProfileUrlParams>();
 
   const {
+    isFetching,
     characterProfile,
     filmList,
     speciesList,
   } = useCharacterProfile(id!);
 
   return (
-    <div>
+    <div className="max-w-4xl mx-auto p-10">
+      {
+        isFetching && <Spinner />
+      }
       {
         characterProfile
         && (
-          <div className="max-w-4xl mx-auto p-10">
+          <>
             <h2 className="font-medium text-3xl font-['Poppins'] border-b border-gray-500 py-3 pl-6">
               {characterProfile.name}
             </h2>
@@ -66,7 +71,7 @@ function CharacterProfile() {
                 listItems={speciesList && speciesList.map(({ name }) => (name))}
               />
             </div>
-          </div>
+          </>
         )
       }
     </div>

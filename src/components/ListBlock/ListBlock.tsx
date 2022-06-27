@@ -1,3 +1,5 @@
+import Spinner from 'components/Spinner/Spinner';
+
 export interface ListBlockProps {
   title: string;
   listItems: string[] | undefined;
@@ -10,7 +12,7 @@ function ListBlock({ title, listItems }: ListBlockProps) {
       {
         !listItems
         && (
-          <div>loading...</div>
+          <Spinner />
         )
       }
       {
