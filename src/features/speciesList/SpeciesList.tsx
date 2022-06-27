@@ -1,21 +1,18 @@
-import { SpeciesListItem } from 'app/types';
 import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { useSpecies } from './useSpeciesList';
-
-const getSpeciesId = (url: string): string => (
-  `${Number.parseInt(url.split('https://swapi.dev/api/species/')[1], 10)}`
-);
+import { CardListItem } from 'app/types';
+import { getItemId } from 'app/utils';
+import CardList from 'components/CradList/CardList';
+import { useSpeciesList } from './useSpeciesList';
 
 function SpeciesList() {
   const {
     speciesList,
-  } = useSpecies();
+  } = useSpeciesList();
 
-  const transformedSpeciesList: SpeciesListItem[] | undefined = useMemo(() => (
+  const transformedSpeciesList: CardListItem[] | undefined = useMemo(() => (
     speciesList && speciesList.results.map((species) => ({
       name: species.name,
-      id: getSpeciesId(species.url),
+      id: getItemId(species.url, 'species'),
     }))
   ), [speciesList]);
 
@@ -24,19 +21,7 @@ function SpeciesList() {
       {
         transformedSpeciesList
         && (
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-            {
-              transformedSpeciesList.map((item) => (
-                <Link
-                  key={item.name}
-                  to={`/species/${item.id}`}
-                  className="bg-white py-10 px-16 rounded-xl"
-                >
-                  <div className="text-center font-normal font-['Poppins']">{item.name}</div>
-                </Link>
-              ))
-            }
-          </div>
+          <CardList items={transformedSpeciesList} path="/species" />
         )
       }
     </div>

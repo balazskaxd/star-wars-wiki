@@ -1,9 +1,9 @@
-import { People } from 'app/types';
+import { PeopleDTO } from 'app/types';
 import { useState, useEffect } from 'react';
 import { useGetSpeciesQuery } from './api';
 
-export const useSpecies = (id: string) => {
-  const [peopleList, setPeopleList] = useState<People[] | null>(null);
+export const useSpeciesProfile = (id: string) => {
+  const [peopleList, setPeopleList] = useState<PeopleDTO[] | undefined>(undefined);
 
   const { data: speciesProfile, isLoading, isFetching } = useGetSpeciesQuery(id);
 
@@ -16,7 +16,9 @@ export const useSpecies = (id: string) => {
   };
 
   useEffect(() => {
-    fetchPeople();
+    if (speciesProfile) {
+      fetchPeople();
+    }
   }, [speciesProfile]);
 
   return {

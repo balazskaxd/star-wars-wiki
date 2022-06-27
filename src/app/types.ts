@@ -1,4 +1,21 @@
-export type People = {
+export type FilmDTO = {
+  title: string;
+  episode_id: 5,
+  opening_crawl: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  characters: string[];
+  planets: string[];
+  starships: string[];
+  vehicles: string[];
+  species: string[];
+  created: Date,
+  edited: Date,
+  url: string;
+};
+
+export type PeopleDTO = {
   name: string;
   height: string;
   mass: string;
@@ -42,7 +59,11 @@ export type SpeciesDTOResponse = {
   results: SpeciesDTO[];
 };
 
-export type SpeciesListItem = {
+export type CardListItem = {
   name: string;
+  id: string;
+};
+
+export type ProfileUrlParams = {
   id: string;
 };

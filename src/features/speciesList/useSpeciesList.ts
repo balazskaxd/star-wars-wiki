@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useGetAllSpeciesQuery } from './api';
 
-export const useSpecies = () => {
+export const useSpeciesList = () => {
   const [page, setPage] = useState(1);
 
   const { data: speciesList, isLoading, isFetching } = useGetAllSpeciesQuery(page);

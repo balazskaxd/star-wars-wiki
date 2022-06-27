@@ -15,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/" element={<ROUTES.SpeciesPage />} />
           <Route path="species" element={<ROUTES.SpeciesPage />} />
           <Route path="species/:id" element={<ROUTES.SpeciesProfilePage />} />
+          <Route path="characters/:id" element={<ROUTES.CharacterProfilePage />} />
         </Routes>
       </BrowserRouter>
     </Provider>

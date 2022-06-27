@@ -1,17 +1,24 @@
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSpecies } from './useSpeciesProfile';
-
-type SpeciesProfileParams = {
-  id: string;
-};
+import { CardListItem, ProfileUrlParams } from 'app/types';
+import { getItemId } from 'app/utils';
+import CardList from 'components/CradList/CardList';
+import { useSpeciesProfile } from './useSpeciesProfile';
 
 function SpeciesProfile() {
-  const { id } = useParams<SpeciesProfileParams>();
+  const { id } = useParams<ProfileUrlParams>();
 
   const {
     speciesProfile,
     peopleList,
-  } = useSpecies(id!);
+  } = useSpeciesProfile(id!);
+
+  const transformedPeopleList: CardListItem[] | undefined = useMemo(() => (
+    peopleList && peopleList.map((item) => ({
+      name: item.name,
+      id: getItemId(item.url, 'people'),
+    }))
+  ), [peopleList]);
 
   return (
     <div>
@@ -19,18 +26,15 @@ function SpeciesProfile() {
         speciesProfile
         && (
           <div className="max-w-4xl mx-auto pt-10">
-            <h2 className="font-medium text-3xl font-['Poppins'] border-b border-gray-500 py-3 pl-6">
+            <h2 className="font-medium text-3xl font-['Poppins'] border-b border-gray-500 py-3 pl-6 mb-6">
               {`${speciesProfile.name} characters`}
             </h2>
-            <div className="grid grid-cols-2">
-              <div className="bg-white">
-                {
-                  peopleList && peopleList.map((people) => (
-                    <li key={people.name}>{people.name}</li>
-                  ))
-                }
-              </div>
-            </div>
+            {
+              transformedPeopleList
+              && (
+                <CardList items={transformedPeopleList} path="/characters" />
+              )
+            }
           </div>
         )
       }
