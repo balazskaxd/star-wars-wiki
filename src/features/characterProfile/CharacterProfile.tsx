@@ -62,12 +62,12 @@ function CharacterProfile() {
 
             <div className="grid grid-rows-2 sm:grid-rows-none sm:grid-cols-2 gap-5 mt-5">
               <ListBlock
-                title="Film list"
+                title="Film List"
                 listItems={filmList && filmList.map(({ title }) => (title))}
               />
 
               <ListBlock
-                title="Film list"
+                title="Species List"
                 listItems={speciesList && speciesList.map(({ name }) => (name))}
               />
             </div>
