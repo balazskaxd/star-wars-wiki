@@ -6,6 +6,7 @@ import {
 import { debounce } from 'lodash';
 import { PeopleDTO } from 'app/types';
 import { getItemId } from 'app/utils';
+import { baseUrl } from 'app/config';
 
 export type DropdownItem = {
   label: string;
@@ -17,7 +18,7 @@ export const useSearchInput = () => {
   const [people, setPeople] = useState<DropdownItem[] | undefined>(undefined);
 
   const search = async (queryString: string) => {
-    const response = await fetch(`https://swapi.dev/api/people/?search=${queryString}`);
+    const response = await fetch(`${baseUrl}/people/?search=${queryString}`);
     const body = await response.json();
 
     if (body.results && body.results.length > 0) {
