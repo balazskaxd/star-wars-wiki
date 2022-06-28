@@ -6,6 +6,7 @@ import Header from './Header';
 
 const title = 'Test title';
 const backButtonTitle = 'Back to main menu';
+const history = createMemoryHistory();
 
 test('shuold render given title', () => {
   const { getByText } = render(<Header title={title} />);
@@ -14,7 +15,6 @@ test('shuold render given title', () => {
 });
 
 test('shuold not render the back button by default', () => {
-  const history = createMemoryHistory();
   render(
     <Router location={history.location} navigator={history}>
       <Header title={title} />
@@ -24,7 +24,6 @@ test('shuold not render the back button by default', () => {
 });
 
 test('shuold render the button button', () => {
-  const history = createMemoryHistory();
   render(
     <Router location={history.location} navigator={history}>
       <Header title={title} withBackButton />

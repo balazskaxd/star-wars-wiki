@@ -23,15 +23,21 @@ function SpeciesProfile() {
   ), [peopleList]);
 
   return (
-    <div className="max-w-4xl mx-auto p-10">
+    <div
+      className="max-w-4xl mx-auto p-10"
+      data-testid="SpeciesProfile:container"
+    >
       {
         isFetching && <Spinner />
       }
       {
-        speciesProfile
+        !isFetching && speciesProfile
         && (
           <>
-            <h2 className="font-medium text-3xl font-['Poppins'] border-b border-gray-500 py-3 pl-6 mb-6">
+            <h2
+              className="font-medium text-3xl font-['Poppins'] border-b border-gray-500 py-3 pl-6 mb-6"
+              data-testid="SpeciesProfile:title"
+            >
               {`${speciesProfile.name} characters`}
             </h2>
             {

@@ -1,6 +1,6 @@
 export type FilmDTO = {
   title: string;
-  episode_id: 5,
+  episode_id: number,
   opening_crawl: string;
   director: string;
   producer: string;
@@ -43,7 +43,7 @@ export type SpeciesDTO = {
   hair_colors: string;
   eye_colors: string;
   average_lifespan: string;
-  homeworld: string;
+  homeworld: string | null;
   language: string;
   people: string[],
   films: string[],

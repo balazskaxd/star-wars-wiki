@@ -7,7 +7,7 @@ export interface CardListProps {
 
 function CardList({ items, path }: CardListProps) {
   return (
-    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5" data-testid="CardList:container">
       {
         items.map((item) => (
           <Link

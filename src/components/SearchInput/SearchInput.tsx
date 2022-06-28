@@ -12,7 +12,7 @@ function SearchInput() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-72 m-6 mx-auto">
+    <div className="w-72 m-6 mx-auto" data-testid="SearchInput:continer">
       <Combobox
         value={undefined}
         onChange={(id) => {
@@ -41,7 +41,10 @@ function SearchInput() {
               {
                 !people
                 && (
-                  <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
+                  <div
+                    className="relative cursor-default select-none py-2 px-4 text-gray-700"
+                    data-testid="SearchInput:searching-state"
+                  >
                     Searching...
                   </div>
                 )

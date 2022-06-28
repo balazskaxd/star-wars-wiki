@@ -31,18 +31,21 @@ function CharacterProfile() {
   } = useCharacterProfile(id!);
 
   return (
-    <div className="max-w-4xl mx-auto p-10">
+    <div className="max-w-4xl mx-auto p-10" data-testid="CharacterProfile:container">
       {
         isFetching && <Spinner />
       }
       {
-        characterProfile
+        !isFetching && characterProfile
         && (
           <>
-            <h2 className="font-medium text-3xl font-['Poppins'] border-b border-gray-500 py-3 pl-6">
+            <h2
+              className="font-medium text-3xl font-['Poppins'] border-b border-gray-500 py-3 pl-6"
+              data-testid="CharacterProfile:title"
+            >
               {characterProfile.name}
             </h2>
-            <dl>
+            <dl data-testid="CharacterProfile:description-list">
               {
                 listFields.map((row, index) => (
                   <div

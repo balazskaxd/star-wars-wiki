@@ -19,12 +19,15 @@ function SpeciesList() {
   ), [speciesList]);
 
   return (
-    <div className="max-w-4xl mx-auto p-10">
+    <div
+      className="max-w-4xl mx-auto p-10"
+      data-testid="SpeciesList:container"
+    >
       {
         isFetching && <Spinner />
       }
       {
-        transformedSpeciesList
+        !isFetching && transformedSpeciesList
         && (
           <CardList items={transformedSpeciesList} path="/species" />
         )
