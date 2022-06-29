@@ -5,7 +5,7 @@ import ListBlock from './ListBlock';
 const mockTitle = 'Mock Title';
 const mockListItems = ['item1', 'item2'];
 
-test('shuold render given items', () => {
+test('should render given items', () => {
   render(
     <ListBlock title={mockTitle} listItems={undefined} />
   );
@@ -13,7 +13,7 @@ test('shuold render given items', () => {
   expect(listBlockTitle.textContent).toBe(mockTitle);
 });
 
-test('shuold render Spinner without items', () => {
+test('should render Spinner without items', () => {
   render(
     <ListBlock title={mockTitle} listItems={undefined} />
   );
@@ -21,7 +21,7 @@ test('shuold render Spinner without items', () => {
   expect(listBlockSpinner).toBeInTheDocument();
 });
 
-test('shuold render list items', () => {
+test('should render list items', () => {
   render(
     <ListBlock title={mockTitle} listItems={mockListItems} />
   );

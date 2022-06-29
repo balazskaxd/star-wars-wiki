@@ -10,7 +10,7 @@ const mockItems = [
   { id: 3, name: 'Test 3' },
 ]
 
-test('shuold render given items', () => {
+test('should render given items', () => {
   const history = createMemoryHistory();
   render(
     <Router location={history.location} navigator={history}>
@@ -21,7 +21,7 @@ test('shuold render given items', () => {
   expect(cardListContainer.children.length).toBe(mockItems.length);
 });
 
-test('shuold not render any item', () => {
+test('should not render any item', () => {
   render(<CardList items={[]} path="" />);
   const cardListContainer = screen.getByTestId('CardList:container');
   expect(cardListContainer.children.length).toBe(0);

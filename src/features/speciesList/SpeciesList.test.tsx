@@ -11,7 +11,7 @@ const mockuseSpeciesList = useSpeciesList as jest.MockedFunction<typeof useSpeci
 const defaultHookVales = {
   isLoading: false,
   isFetching: false,
-  speciesList: {
+  speciesResponse: {
     count: 37,
     next: 'next',
     previous: null,
@@ -21,7 +21,7 @@ const defaultHookVales = {
   setPage: () => {},
 };
 
-test('shuold render SpeciesList component', () => {
+test('should render SpeciesList component', () => {
   mockuseSpeciesList.mockReturnValue({
     ...defaultHookVales,
     isFetching: true,
@@ -31,7 +31,7 @@ test('shuold render SpeciesList component', () => {
   expect(SpeciesListContiner).toBeInTheDocument();
 });
 
-test('shuold render Spinner while fetching species data', () => {
+test('should render Spinner while fetching species data', () => {
   mockuseSpeciesList.mockReturnValue({
     ...defaultHookVales,
     isFetching: true,
@@ -41,7 +41,7 @@ test('shuold render Spinner while fetching species data', () => {
   expect(SpinnerContainer).toBeInTheDocument();
 });
 
-test('shuold render CardList component', () => {
+test('should render CardList component', () => {
   mockuseSpeciesList.mockReturnValue(defaultHookVales);
   const history = createMemoryHistory();
   render(

@@ -16,14 +16,14 @@ const defaultHookVales = {
   speciesList: undefined,
 };
 
-test('shuold render CharacterProfile component', () => {
+test('should render CharacterProfile component', () => {
   mockuseCharacterProfile.mockReturnValue(defaultHookVales);
   render(<CharacterProfile />);
   const CharacterProfileContiner = screen.getByTestId('CharacterProfile:container');
   expect(CharacterProfileContiner).toBeInTheDocument();
 });
 
-test('shuold render Spinner while fetching profile data', () => {
+test('should render Spinner while fetching profile data', () => {
   mockuseCharacterProfile.mockReturnValue({
     ...defaultHookVales,
     isFetching: true,
@@ -33,7 +33,7 @@ test('shuold render Spinner while fetching profile data', () => {
   expect(SpinnerContainer).toBeInTheDocument();
 });
 
-test('shuold render name of the character', () => {
+test('should render name of the character', () => {
   mockuseCharacterProfile.mockReturnValue(defaultHookVales);
   render(<CharacterProfile />);
   const CharacterProfileTitle = screen.getByTestId('CharacterProfile:title');
@@ -41,14 +41,14 @@ test('shuold render name of the character', () => {
   expect(CharacterProfileTitle.textContent).toBe(defaultHookVales.characterProfile.name);
 });
 
-test('shuold render description list of the character', () => {
+test('should render description list of the character', () => {
   mockuseCharacterProfile.mockReturnValue(defaultHookVales);
   render(<CharacterProfile />);
   const CharacterProfileDescriptionList = screen.getByTestId('CharacterProfile:description-list');
   expect(CharacterProfileDescriptionList).toBeInTheDocument();
 });
 
-test('shuold render list blocks (without content)', () => {
+test('should render list blocks (without content)', () => {
   mockuseCharacterProfile.mockReturnValue({
     ...defaultHookVales,
     isFetching: false,
@@ -60,7 +60,7 @@ test('shuold render list blocks (without content)', () => {
   expect(SpinnerContainers.length).toBe(2);
 });
 
-test('shuold render list blocks (with content)', () => {
+test('should render list blocks (with content)', () => {
   mockuseCharacterProfile.mockReturnValue({
     ...defaultHookVales,
     filmList: [mockFilm],

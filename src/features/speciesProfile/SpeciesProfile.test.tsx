@@ -15,14 +15,14 @@ const defaultHookVales = {
   peopleList: undefined,
 };
 
-test('shuold render SpeciesProfile component', () => {
+test('should render SpeciesProfile component', () => {
   mockuseSpeciesProfile.mockReturnValue(defaultHookVales);
   render(<SpeciesProfile />);
   const SpeciesProfileContiner = screen.getByTestId('SpeciesProfile:container');
   expect(SpeciesProfileContiner).toBeInTheDocument();
 });
 
-test('shuold render Spinner while fetching species data', () => {
+test('should render Spinner while fetching species data', () => {
   mockuseSpeciesProfile.mockReturnValue({
     ...defaultHookVales,
     isFetching: true,
@@ -32,7 +32,7 @@ test('shuold render Spinner while fetching species data', () => {
   expect(SpinnerContainer).toBeInTheDocument();
 });
 
-test('shuold render CardList component', () => {
+test('should render CardList component', () => {
   mockuseSpeciesProfile.mockReturnValue({
     ...defaultHookVales,
     peopleList: [mockPeople],

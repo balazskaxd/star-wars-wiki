@@ -8,13 +8,13 @@ const title = 'Test title';
 const backButtonTitle = 'Back to main menu';
 const history = createMemoryHistory();
 
-test('shuold render given title', () => {
+test('should render given title', () => {
   const { getByText } = render(<Header title={title} />);
   const titleElement = getByText(title);
   expect(titleElement).toBeInTheDocument();
 });
 
-test('shuold not render the back button by default', () => {
+test('should not render the back button by default', () => {
   render(
     <Router location={history.location} navigator={history}>
       <Header title={title} />
@@ -23,7 +23,7 @@ test('shuold not render the back button by default', () => {
   expect(screen.queryByText(new RegExp(backButtonTitle, 'i'))).not.toBeInTheDocument();
 });
 
-test('shuold render the button button', () => {
+test('should render the button button', () => {
   render(
     <Router location={history.location} navigator={history}>
       <Header title={title} withBackButton />

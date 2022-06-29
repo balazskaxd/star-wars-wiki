@@ -3,20 +3,23 @@ import { CardListItem } from 'app/types';
 import { getItemId } from 'app/utils';
 import CardList from 'components/CradList/CardList';
 import Spinner from 'components/Spinner/Spinner';
+import Pagination from 'components/Pagination/Pagination';
 import { useSpeciesList } from './useSpeciesList';
 
 function SpeciesList() {
   const {
+    page,
+    setPage,
     isFetching,
-    speciesList,
+    speciesResponse,
   } = useSpeciesList();
 
   const transformedSpeciesList: CardListItem[] | undefined = useMemo(() => (
-    speciesList && speciesList.results.map((species) => ({
+    speciesResponse && speciesResponse.results.map((species) => ({
       name: species.name,
       id: getItemId(species.url, 'species'),
     }))
-  ), [speciesList]);
+  ), [speciesResponse]);
 
   return (
     <div
@@ -29,7 +32,14 @@ function SpeciesList() {
       {
         !isFetching && transformedSpeciesList
         && (
-          <CardList items={transformedSpeciesList} path="/species" />
+          <>
+            <CardList items={transformedSpeciesList} path="/species" />
+            <Pagination
+              total={speciesResponse!.count}
+              currentPage={page}
+              onChange={setPage}
+            />
+          </>
         )
       }
     </div>
